@@ -1,0 +1,133 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="FinalProject.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%: Page.Title %> - My ASP.NET Application</title>
+
+        <webopt:bundlereference runat="server" path="~/Content/css" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    </head>
+    <body>
+        <form runat="server">
+            <asp:ScriptManager runat="server">
+                <Scripts>
+                    <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                    <%--Framework Scripts--%>
+                    <asp:ScriptReference Name="MsAjaxBundle" />
+                    <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                    <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                    <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                    <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                    <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                    <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                    <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                    <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                    <asp:ScriptReference Name="WebFormsBundle" />
+                    <%--Site Scripts--%>
+                </Scripts>
+            </asp:ScriptManager>
+    
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark indigo scrolling-navbar fixed-top">
+                <a href="#" id="sidenav-btn" data-activates="slide-out" class="btn btn-flat button-collapse">
+                    <i class="fa fa-bars fa-lg"></i>
+                </a>
+
+                <div class="collapse navbar-collapse" id="main-menu">
+            
+                    <a class="navbar-brand" href="#">Name Here</a>
+
+                    <ul class="navbar-nav mr-auto mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link align-middle" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link align-middle disabled" href="#">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+            
+                <!-- Profile button -->
+                <a id="profile-btn" class="profile-link rounded-circle hoverable waves-effect z-depth-1"
+                    data-toggle="modal" data-target="#profile-menu">
+                    <img class="profile-pic img-fluid" src="http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png"/>
+                </a>
+            </nav>
+        
+            <!-- Profile menu -->
+            <div id="profile-menu" class="modal fade right modal-scrolling" role="dialog" data-backdrop="false">
+                <div class="modal-dialog modal-side modal-top-right modal-notify modal-info" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div>
+                                <img class="profile-pic img-fluid rounded-circle" src="http://vvcexpl.com/wordpress/wp-content/uploads/2013/09/profile-default-male.png"/>
+                        
+                                <div class="heading">
+                                    <span class="font-bold">Administrator</span><br/>
+                                    <span class="font-weight-light" style="font-size: 10pt;">Logged in</span>
+                                </div>
+                            </div>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="white-text">×</span>
+                            </button>
+                        </div>
+                    
+                        <div class="modal-body">
+                            <p>Add administrator functions here</p>
+                        </div>
+                    
+                        <div class="modal-footer justify-content-center">
+                            <a class="btn btn-outline-secondary-modal waves-effect" data-dismiss="modal"><i class="fa fa-sign-out mr-1"></i> Log out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidenav (mobile) -->
+            <div id="slide-out" class="side-nav indigo darken-3">
+            
+                <!-- Links (same as the desktop navbar) -->
+                <ul class="custom-scrollbar list-unstyled collapsible collapsible-accordion">
+                    <!-- Logo -->
+                    <li class="logo logo-wrapper waves-light">
+                        <a href="Home.aspx" class="text-center flex-center">
+                            <!-- Placeholder logo -->
+                            <h4 class="font-up font-bold flex-center">Name Here</h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="collapsible-header waves-effect waves-light" href="#">Link</a>
+                    </li>
+                    <li >
+                        <a class="collapsible-header waves-effect waves-light disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <footer class="page-footer indigo darken-3 center-on-small-only">
+                <div class="container-fluid footer-copyright">
+                    <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                </div>
+            </footer>
+
+            <!-- Additional JavaScript Files -->
+            <asp:PlaceHolder runat="server">
+                <%: Scripts.Render("~/bundles/bootstrap") %>
+            </asp:PlaceHolder>
+
+            <script src="https://use.fontawesome.com/c9385c311d.js"></script>
+            <script type="text/javascript">
+                $(".button-collapse").sideNav();
+            </script>
+        </form>
+    </body>
+</html>
