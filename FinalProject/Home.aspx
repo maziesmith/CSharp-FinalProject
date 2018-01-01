@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="FinalProject._Default" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="FinalProject.Home" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Title page. Use data-jarallax-video="your_url_here" to add a video background if needed-->
@@ -40,7 +40,9 @@
                             <div class="md-form">
                                 <i class="fa fa-address-card prefix"></i>
                                 <asp:TextBox ID="txtName" runat="server" CssClass="form-control"></asp:TextBox>
-                                <asp:Label ID="lblName" runat="server" Text="Name" AssociatedControlID="txtName"></asp:Label>
+                                <asp:Label ID="lblName" runat="server" AssociatedControlID="txtName">
+                                    Name <span class="mandatory">*</span>
+                                </asp:Label>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -56,7 +58,9 @@
                             <div class="md-form">
                                 <i class="fa fa-phone prefix"></i>
                                 <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" TextMode="Phone"></asp:TextBox>
-                                <asp:Label ID="lblPhone" runat="server" Text="Phone Number" AssociatedControlID="txtPhone"></asp:Label>
+                                <asp:Label ID="lblPhone" runat="server" AssociatedControlID="txtPhone">
+                                    Phone Number <span class="mandatory">*</span>
+                                </asp:Label>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -66,15 +70,50 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="md-form">
+                                <i class="fa fa-magic prefix"></i>
+                                <asp:DropDownList ID="ddlService" runat="server" CssClass="mdb-select">
+                                    <asp:ListItem>Select service type...</asp:ListItem>
+                                    <asp:ListItem>List</asp:ListItem>
+                                    <asp:ListItem>of</asp:ListItem>
+                                    <asp:ListItem>services</asp:ListItem>
+                                    <asp:ListItem>needed</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:Label ID="lblService" runat="server" AssociatedControlID="ddlService">
+                                    Service <span class="mandatory">*</span>
+                                </asp:Label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="md-form">
+                                <i class="fa fa-comment prefix"></i>
+                                <asp:TextBox ID="txtComment" runat="server" CssClass="form-control md-textarea comment-area" TextMode="MultiLine"></asp:TextBox>
+                                <asp:Label ID="lblComment" runat="server" Text="Comments (optional)" AssociatedControlID="txtComment"></asp:Label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" runat="server" class="btn btn-primary">
-                        <i class="fa fa-send mr-1"></i> Submit
-                    </button>
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary"
+                        OnClientClick="return validate();" OnClick="BtnSubmit_OnClick"/>
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
-                        <i class="fa fa-times mr-1"></i> Cancel
+                        Cancel
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Message about appointment -->
+    <div id="appointment-modal" class="modal fade" role="dialog" data-backdrop="false">
+        <div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+            <div class="modal-content">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <p id="message" class="pt-3 pr-2" style="color: #616161;"></p>
+                    <a href="#" type="button" class="btn btn-primary-modal waves-effect waves-light" data-dismiss="modal">OK</a>
                 </div>
             </div>
         </div>
@@ -94,4 +133,68 @@
             </div>
         </div>
     </div>
+    
+    <script type="text/javascript">
+        function validate() {
+            if (!(validateName() && validatePhone() && validateDate() && validateService()))
+                return false;
+
+            return true;
+        }
+
+        function validateName() {
+            var value = document.getElementById('<%= txtName.ClientID %>').value;
+            if (value == null || value === "") {
+                document.getElementById('<%= lblName.ClientID %>').style.color = 'red';
+                return false;
+            }
+                
+            document.getElementById('<%= lblName.ClientID %>').style.color = '#616161';
+            return true;
+        }
+
+        function validatePhone() {
+            var value = document.getElementById('<%= txtPhone.ClientID %>').value;
+            if (value == null || value === "") {
+                document.getElementById('<%= lblPhone.ClientID %>').style.color = 'red';
+                return false;
+            } else if (isNaN(value)) {
+                document.getElementById('<%= lblPhone.ClientID %>').style.color = 'red';
+                return false;
+            } else if (value.length > 10) {
+                document.getElementById('<%= lblPhone.ClientID %>').style.color = 'red';
+                return false;
+            }
+
+            document.getElementById('<%= lblPhone.ClientID %>').style.color = '#616161';
+            return true;
+        }
+
+        function validateDate() {
+            var value = document.getElementById('<%= txtDate.ClientID %>').value;
+            if (value == null || value === "") {
+                document.getElementById('<%= txtDate.ClientID %>').style.color = 'red';
+                return false;
+            }
+
+            document.getElementById('<%= txtDate.ClientID %>').style.color = '#616161';
+            return true;
+        }
+
+        function validateService() {
+            var value = document.getElementById('<%= ddlService.ClientID %>').value;
+            if (value === "Select service type...") {
+                document.getElementById('<%= lblService.ClientID %>').style.color = 'red';
+                return false;
+            }
+
+            document.getElementById('<%= lblService.ClientID %>').style.color = '#616161';
+            return true;
+        }
+
+        function showMessage() {
+            $('#appointment-modal #message').text("<%= message %>");
+            $('#appointment-modal').modal('show');
+        }
+    </script>
 </asp:Content>

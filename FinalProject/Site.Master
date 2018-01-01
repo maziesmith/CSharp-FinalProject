@@ -19,6 +19,7 @@
                     <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                     <%--Framework Scripts--%>
                     <asp:ScriptReference Name="MsAjaxBundle" />
+                    <asp:ScriptReference Name="jquery"/>
                     <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                     <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
                     <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
@@ -40,15 +41,10 @@
 
                 <div class="collapse navbar-collapse" id="main-menu">
             
-                    <a class="navbar-brand" href="#">Name Here</a>
+                    <a class="navbar-brand" href="Home.aspx">Name Here</a>
 
                     <ul class="navbar-nav mr-auto mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link align-middle" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link align-middle disabled" href="#">Disabled</a>
-                        </li>
+                        <!-- Links here -->
                     </ul>
                 </div>
             
@@ -79,7 +75,14 @@
                         </div>
                     
                         <div class="modal-body">
-                            <p>Add administrator functions here</p>
+                            <div class="row">
+                                <a href="Staff.aspx" class="col-xs-12 btn btn-flat btn-block text-left">
+                                    <i class="fa fa-user-circle mr-2 fa-2x" style="color: #616161 !important;"></i> Staff Management
+                                </a>
+                                <a href="Resources.aspx" class="col-xs-12 btn btn-flat btn-block text-left">
+                                    <i class="fa fa-recycle mr-2 fa-2x" style="color: #616161 !important;"></i> Resource Management
+                                </a>
+                            </div>
                         </div>
                     
                         <div class="modal-footer justify-content-center">
@@ -127,6 +130,10 @@
             <script src="https://use.fontawesome.com/c9385c311d.js"></script>
             <script type="text/javascript">
                 $(".button-collapse").sideNav();
+
+                $(document).ready(function () {
+                    $('.mdb-select').material_select();
+                });
             </script>
         </form>
     </body>
