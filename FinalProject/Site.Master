@@ -41,10 +41,20 @@
 
                 <div class="collapse navbar-collapse" id="main-menu">
             
-                    <a class="navbar-brand" href="Home.aspx">Name Here</a>
+                    <a class="navbar-brand" href="Home.aspx">Home</a>
 
                     <ul class="navbar-nav mr-auto mt-lg-0">
                         <!-- Links here -->
+                        <li class="nav-item">
+                            <a href="Staff.aspx" class="nav-link">
+                                <i class="fa fa-user-circle mr-2 fa-lg"></i> Staff
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="Resources.aspx" class="nav-link">
+                                <i class="fa fa-recycle mr-2 fa-lg"></i> Resources
+                            </a>
+                        </li>
                     </ul>
                 </div>
             
@@ -74,17 +84,6 @@
                             </button>
                         </div>
                     
-                        <div class="modal-body">
-                            <div class="row">
-                                <a href="Staff.aspx" class="col-xs-12 btn btn-flat btn-block text-left">
-                                    <i class="fa fa-user-circle mr-2 fa-2x" style="color: #616161 !important;"></i> Staff Management
-                                </a>
-                                <a href="Resources.aspx" class="col-xs-12 btn btn-flat btn-block text-left">
-                                    <i class="fa fa-recycle mr-2 fa-2x" style="color: #616161 !important;"></i> Resource Management
-                                </a>
-                            </div>
-                        </div>
-                    
                         <div class="modal-footer justify-content-center">
                             <a class="btn btn-outline-secondary-modal waves-effect" data-dismiss="modal"><i class="fa fa-sign-out mr-1"></i> Log out</a>
                         </div>
@@ -101,14 +100,18 @@
                     <li class="logo logo-wrapper waves-light">
                         <a href="Home.aspx" class="text-center flex-center">
                             <!-- Placeholder logo -->
-                            <h4 class="font-up font-bold flex-center">Name Here</h4>
+                            <h4 class="font-up font-bold flex-center">Home</h4>
                         </a>
                     </li>
                     <li>
-                        <a class="collapsible-header waves-effect waves-light" href="#">Link</a>
+                        <a class="collapsible-header waves-effect waves-light" href="Staff.aspx">
+                            <i class="fa fa-user-circle"></i> Staff
+                        </a>
                     </li>
                     <li >
-                        <a class="collapsible-header waves-effect waves-light disabled" href="#">Disabled</a>
+                        <a class="collapsible-header waves-effect waves-light" href="Resources.aspx">
+                            <i class="fa fa-recycle"></i> Resources
+                        </a>
                     </li>
                 </ul>
             </div>

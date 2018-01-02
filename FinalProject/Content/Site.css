@@ -1,6 +1,11 @@
 ﻿@media (max-width: 576px) {
     .display-2 {
-        font-size: 3.7rem;
+        font-size: 36pt;
+    }
+
+    .page-content {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 
@@ -22,6 +27,11 @@
 
     .service .service-title {
         text-align: center;
+    }
+
+    .data-table {
+        max-height: 400px;
+        overflow-y: auto;
     }
 }
 
@@ -110,4 +120,41 @@ textarea {
     margin-left: 3rem;
     width: 92%;
     width: calc(100% - 3rem);
+}
+
+#slide-out .collapsible-header {
+    font-size: 12pt;
+    height: 50px;
+    line-height: 50px;
+}
+
+.side-nav .collapsible a {
+    vertical-align: middle;
+}
+
+.page-header {
+    box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.4);
+    padding-left: 10%;
+    padding-bottom: 10px;
+    font-weight: 700 !important;
+    font-size: 1.5rem;
+}
+
+.data-table {
+    overflow-x: auto;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #AAA;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.data-table th {
+    background-color: #CCC;
+    text-align: center;
+}
+
+.data-table tr:nth-child(odd) {
+    background-color: #EEE;
 }
