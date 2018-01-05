@@ -11,15 +11,29 @@
         <div class="row">
             <!-- Data Table -->
             <div class="col-sm-9">
-                <p>Data Table: GridView</p>
-                <asp:SqlDataSource ID="sdsStaff" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" SelectCommand="SELECT * FROM [Staff]"></asp:SqlDataSource>
-                    <asp:GridView ID="gvStaff" CssClass="table table-responsive table-sm table-striped table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="sdsStaff">
+                <div class="container-max">
+                    <asp:GridView ID="gvStaff" runat="server" AllowSorting="True" DataSourceID="sdsStaff"
+                        RowStyle-Wrap="False" CssClass="table table-responsive table-hover"
+                        GridLines="None" EmptyDataText="No staff employees found.">
                         <Columns>
-                            <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id" />
-                            <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                            <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
+                            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
+                                <ControlStyle CssClass="btn btn-flat"></ControlStyle>
+                            </asp:CommandField>
                         </Columns>
                     </asp:GridView>
+                    <asp:SqlDataSource ID="sdsStaff" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>" 
+                        SelectCommand="SELECT * FROM [Staff]"
+                        DeleteCommand="DELETE FROM [Staff] WHERE [Id] = @Id"
+                        UpdateCommand="UPDATE [Staff] SET [Name] = @Name, [Position] = @Position WHERE [Id] = @Id">
+                        <DeleteParameters>
+                            <asp:Parameter Name="Id" Type="Int32"/>
+                        </DeleteParameters>
+                        <UpdateParameters>
+                            <asp:Parameter Name="Name" Type="String"/>
+                            <asp:Parameter Name="Position" Type="String"/>
+                        </UpdateParameters>
+                    </asp:SqlDataSource>
+                </div>
             </div>
             
             <!-- Buttons -->
@@ -27,8 +41,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <button class="btn btn-primary btn-block">
-                            <i class="fa fa-pencil mr-1"></i> Add new employee
-                        </button>
+                            <i class="fa fa-pencil mr-1"></i> Add new employee</button>
                     </div>
                     <div class="col-xs-12">
                         <button class="btn btn-primary btn-block">

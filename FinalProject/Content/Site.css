@@ -1,4 +1,10 @@
 ﻿@media (max-width: 576px) {
+    .jarallax {
+        min-height: 900px;
+    }
+}
+
+@media screen and (max-width: 576px) {
     .display-2 {
         font-size: 36pt;
     }
@@ -28,11 +34,6 @@
     .service .service-title {
         text-align: center;
     }
-
-    .data-table {
-        max-height: 400px;
-        overflow-y: auto;
-    }
 }
 
 @media (min-width: 768px) {
@@ -50,6 +51,38 @@
 
     .jarallax {
         min-height: 800px;
+    }
+}
+
+.container-max {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+@media (max-width: 576px) {
+    .container-max {
+        max-width: 455px;
+    }
+}
+@media (min-width: 576px) {
+    .container-max {
+        max-width: 535px;
+    }
+}
+@media (min-width: 768px) {
+    .container-max {
+        max-width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container-max {
+        max-width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container-max {
+        max-width: 1170px;
     }
 }
 
@@ -142,19 +175,6 @@ textarea {
 
 .data-table {
     overflow-x: auto;
-}
-
-.data-table th, .data-table td {
-    border: 1px solid #AAA;
-    border-collapse: collapse;
-    padding: 5px;
-}
-
-.data-table th {
-    background-color: #CCC;
-    text-align: center;
-}
-
-.data-table tr:nth-child(odd) {
-    background-color: #EEE;
+    margin-left: 10px;
+    margin-right: 10px;
 }

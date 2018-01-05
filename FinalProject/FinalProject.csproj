@@ -151,7 +151,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Staff.aspx" />
-    <Content Include="Resources.aspx" />
+    <Content Include="Appointments.aspx" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -233,12 +233,12 @@
     <Compile Include="Staff.aspx.designer.cs">
       <DependentUpon>Staff.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Resources.aspx.cs">
-      <DependentUpon>Resources.aspx</DependentUpon>
+    <Compile Include="Appointments.aspx.cs">
+      <DependentUpon>Appointments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Resources.aspx.designer.cs">
-      <DependentUpon>Resources.aspx</DependentUpon>
+    <Compile Include="Appointments.aspx.designer.cs">
+      <DependentUpon>Appointments.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

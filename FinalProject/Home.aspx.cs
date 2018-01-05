@@ -28,7 +28,7 @@ namespace FinalProject {
                 using (SqlConnection connection = new SqlConnection(connectionString)) {
                     connection.Open();
                     string query =
-                        "INSERT INTO Appointments VALUES (NEXT VALUE FOR seq_appointments_id, @Name, @Email, @Phone, CONVERT(DATETIME, @Date), @Service, @Comment)";
+                        "INSERT INTO Appointments VALUES (NEXT VALUE FOR seq_appointments_id, @Name, @Email, @Phone, CONVERT(DATETIME, @Date, 104), @Service, @Comment)";
 
                     DateTime appointmentDate = DateTime.Parse(txtDate.Text);
                     string date = appointmentDate.ToString("dd.MM.yyyy HH:mm");

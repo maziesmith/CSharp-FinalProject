@@ -46,13 +46,13 @@
                     <ul class="navbar-nav mr-auto mt-lg-0">
                         <!-- Links here -->
                         <li class="nav-item">
-                            <a href="Staff.aspx" class="nav-link">
-                                <i class="fa fa-user-circle mr-2 fa-lg"></i> Staff
+                            <a href="Appointments.aspx" class="nav-link">
+                                <i class="fa fa-calendar mr-2 fa-lg"></i> Appointments
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="Resources.aspx" class="nav-link">
-                                <i class="fa fa-recycle mr-2 fa-lg"></i> Resources
+                            <a href="Staff.aspx" class="nav-link">
+                                <i class="fa fa-user-circle mr-2 fa-lg"></i> Staff
                             </a>
                         </li>
                     </ul>
@@ -103,14 +103,14 @@
                             <h4 class="font-up font-bold flex-center">Home</h4>
                         </a>
                     </li>
+                    <li >
+                        <a class="collapsible-header waves-effect waves-light" href="Appointments.aspx">
+                            <i class="fa fa-calendar"></i> Appointments
+                        </a>
+                    </li>
                     <li>
                         <a class="collapsible-header waves-effect waves-light" href="Staff.aspx">
                             <i class="fa fa-user-circle"></i> Staff
-                        </a>
-                    </li>
-                    <li >
-                        <a class="collapsible-header waves-effect waves-light" href="Resources.aspx">
-                            <i class="fa fa-recycle"></i> Resources
                         </a>
                     </li>
                 </ul>
