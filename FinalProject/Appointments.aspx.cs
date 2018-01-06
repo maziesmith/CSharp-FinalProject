@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace FinalProject {
@@ -59,14 +55,25 @@ namespace FinalProject {
                         sdsAppointments.SelectCommand = query.Insert(query.Length, "Name LIKE @Name");
                         sdsAppointments.SelectParameters.Add("Name", DbType.String, txtSearch_Customer.Text + "%");
                     }
+
                     break;
                 case "Date":
-                    sdsAppointments.SelectCommand = query.Insert(query.Length, $"Date {ddlSearch_Date.Text} @Date");
+                    sdsAppointments.SelectCommand = query.Insert(query.Length, $"Date {ddlSearch_Date.SelectedItem.Value} @Date");
                     sdsAppointments.SelectParameters.Add("Date", DbType.DateTime, txtSearch_Date.Text);
                     break;
             }
 
             gvAppointments.DataBind();
+        }
+
+        //TODO: Send data for invoice generation
+        protected void GvAppointments_OnRowCommand(object sender, GridViewCommandEventArgs e) {
+            string command = e.CommandName;
+            string commandArgument = e.CommandArgument.ToString();
+
+            if (command == "GenerateInvoice") {
+                //...
+            }
         }
     }
 }

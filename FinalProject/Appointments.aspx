@@ -20,25 +20,25 @@
                             <asp:ListItem Text="Appointment Date" Value="Date"/>
                         </asp:DropDownList>
                     </div>
-
+                    
+                    <!-- Search by customer name -->
                     <div id="search-customer" class="md-form form-group">
-                        <!-- Search by customer name -->
                         <asp:Label ID="lblSearch_Customer" runat="server" Text="Customer name" 
                                    AssociatedControlID="txtSearch_Customer"></asp:Label>
                         <asp:TextBox ID="txtSearch_Customer" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                     
+                    <!-- Search by appointment date -->
                     <div id="search-date" class="md-form form-group">
-                        <!-- Search by appointment date -->
                         <asp:DropDownList ID="ddlSearch_Date" runat="server" CssClass="mdb-select" Visible="False">
-                            <asp:ListItem Text=">" Value=">"/>
-                            <asp:ListItem Text="<" Value="<"/>
-                            <asp:ListItem Text=">=" Value=">="/>
-                            <asp:ListItem Text="<=" Value="<="/>
-                            <asp:ListItem Text="=" Value="="/>
-                            <asp:ListItem Text="!=" Value="!="/>
-                            <asp:ListItem Text="!<" Value="!<"/>
-                            <asp:ListItem Text="!>" Value="!>"/>
+                            <asp:ListItem Text="Greater than" Value=">"/>
+                            <asp:ListItem Text="Less than" Value="<"/>
+                            <asp:ListItem Text="Greater than or equal to" Value=">="/>
+                            <asp:ListItem Text="Less than or equal to" Value="<="/>
+                            <asp:ListItem Text="Equal to" Value="="/>
+                            <asp:ListItem Text="Not equal to" Value="!="/>
+                            <asp:ListItem Text="Not less than" Value="!<"/>
+                            <asp:ListItem Text="Not more than" Value="!>"/>
                         </asp:DropDownList>
                         <asp:TextBox ID="txtSearch_Date" CssClass="form-control" runat="server" TextMode="DateTimeLocal" Visible="False" Enabled="False"></asp:TextBox>
                     </div>
@@ -57,12 +57,19 @@
             </div>
             <div class="col-xs-12">
                 <div class="container-max">
-                    <asp:GridView ID="gvAppointments" CssClass="table table-responsive table-hover" runat="server" 
-                    AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="sdsAppointments" 
-                    GridLines="None" AllowSorting="True" RowStyle-Wrap="False" EmptyDataText="No appointments found.">
+                    <asp:GridView ID="gvAppointments" CssClass="table table-responsive" runat="server" 
+                                  AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="sdsAppointments" 
+                                  GridLines="None" AllowSorting="True" RowStyle-Wrap="False" EmptyDataText="No appointments found."
+                                  OnRowCommand="GvAppointments_OnRowCommand">
                         <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnGenerateInvoice" runat="server" CommandArgument='<%# Eval("Id") %>'
+                                                    CommandName="GenerateInvoice" Text="Generate Invoice" CssClass="btn btn-flat btn-sm btn-table squeeze"/>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
-                                <ControlStyle CssClass="btn btn-flat"></ControlStyle>
+                                <ControlStyle CssClass="btn btn-flat btn-sm btn-table squeeze"></ControlStyle>
                             </asp:CommandField>
                             <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" SortExpression="Id" />
                             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />

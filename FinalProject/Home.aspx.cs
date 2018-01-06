@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace FinalProject {
     public partial class Home : Page {
@@ -18,8 +14,8 @@ namespace FinalProject {
         protected void Page_Load(object sender, EventArgs e) {
             if (IsPostBack) return;
 
-            if (Session["RowsAffected"] == null)
-                Session["RowsAffected"] = 0;
+            if (ViewState["RowsAffected"] == null)
+                ViewState["RowsAffected"] = 0;
         }
 
 
@@ -43,8 +39,8 @@ namespace FinalProject {
 
                     rowsAffected = insertCommand.ExecuteNonQuery();
 
-                    Session["RowsAffected"] = rowsAffected;
-                    message = (int)Session["RowsAffected"] > 0 ? "Your appointment has been submitted!" 
+                    ViewState["RowsAffected"] = rowsAffected;
+                    message = (int)ViewState["RowsAffected"] > 0 ? "Your appointment has been submitted!" 
                         : "Something went wrong during your appointment submission. Try again a bit later.";
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showMessage();", true);

@@ -178,3 +178,8 @@ textarea {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.squeeze {
+    padding: 5px;
+    margin: 5px;
+}
