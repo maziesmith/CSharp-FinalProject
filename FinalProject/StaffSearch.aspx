@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StaffSearch.aspx.cs" Inherits="FinalProject.StaffSearch" %>
+﻿<%@ Page Title="Staff Search" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StaffSearch.aspx.cs" Inherits="FinalProject.StaffSearch" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Page Header -->
     <div class="container-fluid page-header indigo lighten-1" style="padding-top: 90px;">
@@ -8,9 +8,9 @@
     <!-- Content -->
     <div class="container" style="margin-top: 15px;">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
+                <h3 class="h3-responsive">Search</h3>
                 <div class="form-inline">
-                    <h3 class="h3-responsive">Search</h3>
                     <div class="form-inline">
                         <div class="md-form form-group">
                             <asp:Label ID="lblSearch_Criteria" runat="server"></asp:Label>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <div class="container-max">
                     <asp:GridView ID="gvStaffSearch" runat="server" CssClass="table table-responsive"
                                   RowStyle-Wrap="False" GridLines="None" EmptyDataText="No staff employees found." 

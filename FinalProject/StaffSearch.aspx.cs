@@ -54,7 +54,7 @@ namespace FinalProject {
                         sdsStaffSearch.SelectCommand = "SELECT * FROM Staff";
                     else {
                         sdsStaffSearch.SelectCommand = query.Insert(query.Length, "Position LIKE @Position");
-                        sdsStaffSearch.SelectParameters.Add("Name", DbType.String, txtSearch_Position.Text + "%");
+                        sdsStaffSearch.SelectParameters.Add("Position", DbType.String, txtSearch_Position.Text + "%");
                     }
 
                     break;

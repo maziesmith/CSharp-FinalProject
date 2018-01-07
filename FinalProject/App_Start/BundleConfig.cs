@@ -39,6 +39,11 @@ namespace FinalProject {
                     "~/Scripts/mdb.js",
                     "~/Scripts/mdb.min.js"));
 
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                    "~/Content/Bootstrap/bootstrap.css",
+                    "~/Content/Bootstrap/mdb.css",
+                    "~/Content/Site.css"));
+
             ScriptManager.ScriptResourceMapping.AddDefinition(
                 "respond",
                 new ScriptResourceDefinition {

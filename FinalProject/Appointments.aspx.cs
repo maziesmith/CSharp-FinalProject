@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace FinalProject {
     public partial class Appointments : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            gvAppointments.HeaderRow.TableSection = TableRowSection.TableHeader;
-
             if (!IsPostBack)
                 btnClear.Visible = false;
         }
@@ -65,15 +66,52 @@ namespace FinalProject {
 
             gvAppointments.DataBind();
         }
-
-        //TODO: Send data for invoice generation
+        
         protected void GvAppointments_OnRowCommand(object sender, GridViewCommandEventArgs e) {
-            string command = e.CommandName;
-            string commandArgument = e.CommandArgument.ToString();
+            if (e.CommandName != "GenerateInvoice") return;
 
-            if (command == "GenerateInvoice") {
-                //...
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = ((GridView) sender).Rows[index];
+
+            var emailControl = row.Cells[4].FindControl("lblEmail") as Label;
+            var dateControl = row.Cells[6].FindControl("lblDate") as Label;
+            var serviceControl = row.Cells[7].FindControl("lblService") as Label;
+
+            Session["AppointmentId"]      = row.Cells[2].Text;
+            Session["AppointmentName"]    = row.Cells[3].Text;
+            Session["AppointmentEmail"]   = emailControl.Text;
+            Session["AppointmentPhone"]   = row.Cells[5].Text;
+            Session["AppointmentDate"]    = DateTime.Parse(dateControl.Text);
+            Session["AppointmentService"] = serviceControl.Text;
+            Session["AppointmentPrice"]   = GetPrice(serviceControl.Text);
+            Session["AppointmentComment"] = row.Cells[8].Text;
+
+            Response.Redirect("Invoice.aspx");
+        }
+
+        private decimal GetPrice(string service) {
+            decimal price = 0.0m;
+            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+
+            try {
+                using (SqlConnection connection = new SqlConnection(connectionString)) {
+                    connection.Open();
+
+                    SqlCommand command = new SqlCommand("SELECT Price FROM Services WHERE Name = @Name", connection);
+                    command.Parameters.AddWithValue("@Name", service);
+
+                    using (SqlDataReader reader = command.ExecuteReader()) {
+                        while (reader.Read()) {
+                            price = reader.GetDecimal(0);
+                        }
+                    }
+                }
+            } catch (SqlException ex) {
+                string message = $"SQL Exception:\n{ex.Message}";
+                ScriptManager.RegisterStartupScript(this, GetType(), "Message", $"alert('{message}');", true);
             }
+
+            return price;
         }
     }
 }

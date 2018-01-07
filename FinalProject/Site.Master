@@ -6,9 +6,10 @@
     <head runat="server">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title><%: Page.Title %> - My ASP.NET Application</title>
-
-        <webopt:bundlereference runat="server" path="~/Content/css" />
+        <title><%: Page.Title %> - Cosmetology Spa & Beauty (Final Project)</title>
+        
+        <%: Styles.Render("~/Content/css") %>
+        <%--<webopt:bundlereference runat="server" path="~/Content/css" />--%>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     </head>
@@ -41,7 +42,7 @@
 
                 <div class="collapse navbar-collapse" id="main-menu">
             
-                    <a class="navbar-brand" href="Home.aspx">Home</a>
+                    <a class="navbar-brand" href="Default.aspx">Home</a>
 
                     <ul class="navbar-nav mr-auto mt-lg-0">
                         <!-- Links here -->
@@ -98,7 +99,7 @@
                 <ul class="custom-scrollbar list-unstyled collapsible collapsible-accordion">
                     <!-- Logo -->
                     <li class="logo logo-wrapper waves-light">
-                        <a href="Home.aspx" class="text-center flex-center">
+                        <a href="Default.aspx" class="text-center flex-center">
                             <!-- Placeholder logo -->
                             <h4 class="font-up font-bold flex-center">Home</h4>
                         </a>
@@ -121,7 +122,7 @@
 
             <footer class="page-footer indigo darken-3 center-on-small-only">
                 <div class="container-fluid footer-copyright">
-                    <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                    <p>&copy; <%: DateTime.Now.Year %> - Cosmetology Spa & Beauty (Final Project)</p>
                 </div>
             </footer>
 

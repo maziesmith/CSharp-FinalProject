@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Staff.aspx.cs" Inherits="FinalProject.Staff" %>
+﻿<%@ Page Title="Staff" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Staff.aspx.cs" Inherits="FinalProject.Staff" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Page Header -->
     <div class="container-fluid page-header indigo lighten-1" style="padding-top: 90px;">
@@ -71,11 +71,11 @@
             <div class="col-sm-9">
                 <div class="container-max">
                     <asp:GridView ID="gvStaff" runat="server" AllowSorting="True" DataSourceID="sdsStaff"
-                        RowStyle-Wrap="False" CssClass="table table-responsive"
+                        RowStyle-Wrap="False" CssClass="table table-responsive table-sm"
                         GridLines="None" EmptyDataText="No staff employees found.">
                         <Columns>
                             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True">
-                                <ControlStyle CssClass="btn btn-flat"></ControlStyle>
+                                <ControlStyle CssClass="btn btn-flat btn-sm squeeze"></ControlStyle>
                             </asp:CommandField>
                         </Columns>
                     </asp:GridView>
@@ -97,12 +97,12 @@
             <!-- Buttons -->
             <div class="col-sm-3">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#new-employee-form">
                             <i class="fa fa-pencil mr-1"></i> Add new employee
                         </button>
                     </div>
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <a href="StaffSearch.aspx" class="btn btn-primary btn-block">
                             <i class="fa fa-search mr-1"></i> Search
                         </a>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Appointments.aspx.cs" Inherits="FinalProject.Appointments" %>
+﻿<%@ Page Title="Appointments" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Appointments.aspx.cs" Inherits="FinalProject.Appointments" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Page Header -->
     <div class="container-fluid page-header indigo lighten-1" style="padding-top: 90px;">
@@ -9,7 +9,7 @@
     <div class="container" style="margin-top: 15px;">
         <!-- Search -->
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <h3 class="h3-responsive">Search</h3>
                 <div class="form-inline">
                     <div class="md-form form-group">
@@ -50,12 +50,12 @@
         </div>
         <div class="row">
             <!-- Data Table -->
-            <div class="col-xs-12">
+            <div class="col-12">
                 <button id="btnClear" class="btn btn-flat" type="button" runat="server" OnServerClick="BtnClear_OnServerClick">
                     <i class="fa fa-close fa-lg mr-1"></i> Clear search conditions
                 </button>
             </div>
-            <div class="col-xs-12">
+            <div class="col-12">
                 <div class="container-max">
                     <asp:GridView ID="gvAppointments" CssClass="table table-responsive" runat="server" 
                                   AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="sdsAppointments" 
@@ -64,7 +64,7 @@
                         <Columns>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnGenerateInvoice" runat="server" CommandArgument='<%# Eval("Id") %>'
+                                    <asp:LinkButton ID="btnGenerateInvoice" runat="server" CommandArgument="<%# ((GridViewRow)Container).RowIndex %>"
                                                     CommandName="GenerateInvoice" Text="Generate Invoice" CssClass="btn btn-flat btn-sm btn-table squeeze"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -78,7 +78,7 @@
                                     <asp:TextBox ID="txtEditEmail" runat="server" Text='<%# Bind("Email") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
+                                    <asp:Label ID="lblEmail" runat="server" Text='<%# Bind("Email") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="Phone" HeaderText="Phone Number" SortExpression="Phone" />
@@ -87,20 +87,18 @@
                                     <asp:TextBox ID="txtEditDate" TextMode="DateTimeLocal" runat="server" Text='<%# Bind("Date") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Date", "{0:dd.MM.yyyy HH:mm}") %>'></asp:Label>
+                                    <asp:Label ID="lblDate" runat="server" Text='<%# Bind("Date", "{0:dd.MM.yyyy HH:mm}") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Service" SortExpression="Service">
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddlEditService" CssClass="mdb-select" runat="server" Text='<%# Bind("Service") %>'>
-                                        <asp:ListItem>List</asp:ListItem>
-                                        <asp:ListItem>of</asp:ListItem>
-                                        <asp:ListItem>services</asp:ListItem>
-                                        <asp:ListItem>needed</asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="ddlEditService" CssClass="mdb-select" runat="server" Text='<%# Bind("Service") %>' 
+                                        DataSourceID="sdsEditService" DataTextField="Name" DataValueField="Name"></asp:DropDownList>
+                                    <asp:SqlDataSource ID="sdsEditService" runat="server" ConnectionString="<%$ ConnectionStrings:DBConnectionString %>"
+                                        SelectCommand="SELECT [Name] FROM [Services]"></asp:SqlDataSource>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("Service") %>'></asp:Label>
+                                    <asp:Label ID="lblService" runat="server" Text='<%# Bind("Service") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField DataField="Comment" HeaderText="Comments" SortExpression="Comment"/>
@@ -116,7 +114,7 @@
                                                                             [Date] = @Date,
                                                                             [Service] = @Service,
                                                                             [Comment] = @Comment
-                                                                        WHERE [Id] = @Id">
+                                                                         WHERE [Id] = @Id">
                     <DeleteParameters>
                         <asp:Parameter Name="Id" Type="Int32"/>
                     </DeleteParameters>
@@ -138,7 +136,7 @@
             var select = document.getElementById('<%= ddlSearch_Criteria.ClientID %>');
             var option = select.options[select.selectedIndex].value;
 
-            if (option === "NameDate")
+            if (option === "Date")
                 return validateDate();
             else
                 return true;
@@ -147,7 +145,7 @@
         function validateDate() {
             var value = document.getElementById('<%= txtSearch_Date.ClientID %>').value;
 
-            if (value === "") {
+            if (!value) {
                 return false;
             }
             else
