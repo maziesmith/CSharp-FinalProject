@@ -12,11 +12,10 @@
                     <div class="col-md-12">
                         <div class="text-center">
                             <h1 class="display-2 animated fadeInDown text-uppercase">Cosmetology Spa & Beauty</h1>
-                            <h5 class="font-up font-bold animated fadeInDown">Some kind of brief description here.</h5>
                             
                             <a href="#" class="btn btn-indigo btn-lg animated fadeInDown"
                                data-toggle="modal" data-target="#appointment-form">Book an appointment</a>
-                            <h5 class="font-up font-bold animated fadeInDown" style="margin-top: 30px; margin-bottom: 15px;">Or keep reading</h5>
+                            <h5 class="font-up font-bold animated fadeInDown" style="margin-top: 30px; margin-bottom: 15px;">Learn more</h5>
                             <h5 class="animated fadeInDown infinite"><i class="fa fa-angle-down fa-2x"></i></h5>
                         </div>
                     </div>
